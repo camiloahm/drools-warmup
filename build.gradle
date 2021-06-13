@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.warmup.drools'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+
+ext {
+	droolsVersion = "7.55.0.Final"
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation "org.drools:drools-bom:${droolsVersion}"
+	implementation group: 'org.drools', name: 'drools-compiler', version: "${droolsVersion}"
+	implementation group: 'org.drools', name: 'drools-core', version: "${droolsVersion}"
+	implementation group: 'org.drools', name: 'drools-decisiontables', version: "${droolsVersion}"
+}
+
+test {
+	useJUnitPlatform()
+}
