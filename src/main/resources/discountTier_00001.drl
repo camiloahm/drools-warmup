@@ -1,0 +1,15 @@
+import  com.warmup.drools.demo.api.Booking;
+
+rule "Discount for BOOKING from GOLD user total price higher than 100"
+    when
+        bookingObject : Booking( membershipTier=="GOLD" && totalPrice > 100 );
+    then
+        bookingObject.setDiscount(20);
+end;
+
+rule "Discount for BOOKING from DIAMOND user"
+    when
+        bookingObject : Booking( membershipTier=="DIAMOND");
+    then
+        bookingObject.setDiscount(40);
+end;

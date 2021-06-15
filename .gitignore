@@ -23,5 +23,8 @@
 hs_err_pid*
 
 .idea/
+.gradle/
 *.iml
 *.log
+*.lock
+*.bin

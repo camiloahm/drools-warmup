@@ -7,21 +7,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class DecisionController {
-
+public class BookingController {
 
     private final KieContainer kieContainer;
 
-    public DecisionController(KieContainer kieContainer) {
+    public BookingController(KieContainer kieContainer) {
         this.kieContainer = kieContainer;
     }
 
-    @PostMapping("/discount")
-    private OrderRequest getDiscountPercent(@RequestBody OrderRequest orderRequest) {
+    @PostMapping("/booking")
+    private Booking getDiscountPercent(@RequestBody Booking bookingObject) {
         KieSession kieSession = kieContainer.newKieSession();
-        kieSession.insert(orderRequest);
+        kieSession.insert(bookingObject);
         kieSession.fireAllRules();
         kieSession.dispose();
-        return orderRequest;
+        return bookingObject;
     }
 }
